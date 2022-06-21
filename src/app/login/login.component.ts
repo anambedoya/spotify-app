@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -8,15 +7,16 @@ import { LoginService } from '../services/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  scopes: string = '';
 
-  constructor(private loginService: LoginService) {
-  }
+  constructor() {}
 
   ngOnInit(): void {
+    this.scopes = 'user-follow-read'
   }
 
   login() {
-    window.open(`https://accounts.spotify.com/authorize?client_id=${environment.clientId}&response_type=token&redirect_uri=${environment.url}`, "_self");
+    window.open(`https://accounts.spotify.com/authorize?client_id=${environment.clientId}&response_type=token&redirect_uri=${environment.url}&scope=${this.scopes}`, "_self");
   }
 
 }
