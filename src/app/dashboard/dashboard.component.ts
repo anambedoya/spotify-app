@@ -8,11 +8,13 @@ import { SpotifyService } from '../services/spotify.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardComponent implements OnInit {
   name!: string;
   profilePicture!: string;
   id!: string;
   getProfileSubs!: Subscription;
+  image!: string;
+  artistName!: string;
 
   constructor(private spotifyService: SpotifyService) {
     const queryString = window.location.href;
@@ -22,15 +24,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.getProfileSubs = this.spotifyService.getProfileInfo().subscribe(({display_name, images, id}: any) => {
-      this.name = display_name;
-      this.profilePicture = images[0].url;
-      this.id = id;
+  }
+
+  searchArtist(artistName: string) {
+    this.spotifyService.searchArtist(artistName).subscribe((resp) => {
+      const artist = resp?.artists.items[0];
+      console.log(artist);
+
+      this.image = artist.images[0].url;
+      this.artistName = artist.name;
+      console.log(this.artistName);
     });
   }
 
-  ngOnDestroy() {
-    this.getProfileSubs.unsubscribe();
+  keyEnter(e: any) {
+    this.searchArtist(e.target.value);
   }
 
 }

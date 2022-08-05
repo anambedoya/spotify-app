@@ -1,7 +1,16 @@
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>Name: {{ name }}</mat-card-title>
-        <mat-card-subtitle>Id: {{ id }}</mat-card-subtitle>
-        <img mat-card-avatar [src]="profilePicture">
-    </mat-card-header>
-</mat-card>
+
+<div class="container">
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Search artist</mat-label>
+        <input (keydown.enter)="keyEnter($event)" matInput placeholder="Search artist" value="" name="artistName" #artistName>
+    </mat-form-field>
+
+    <button class="button" (click)="searchArtist(artistName.value)" mat-raised-button>Search</button>
+
+    <div>
+        <img [src]="image">
+    </div>
+</div>
+
+
+
