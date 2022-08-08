@@ -1,0 +1,21 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" opened class="example-sidenav" [fixedInViewport]="true">
+    <ul>
+        <li>
+            <a routerLink="/">Artist</a>
+        </li>
+        <li>
+            <a routerLink="/">Genres</a>
+        </li>
+        <li>
+            <a routerLink="/">Your section</a>
+        </li>
+    </ul>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+    <app-dashboard></app-dashboard>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+

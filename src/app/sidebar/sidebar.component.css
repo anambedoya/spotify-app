@@ -1,0 +1,12 @@
+mat-sidenav {
+    width: 200px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a:visited {
+    text-decoration: none;
+    color: inherit;
+}
