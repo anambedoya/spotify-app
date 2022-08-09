@@ -7,7 +7,7 @@
     <button class="button" (click)="searchArtist(artistName.value)" mat-raised-button>Search</button>
 
     <div>
-        <img [src]="image">
+        <img (click)="goToArtist()" [src]="image">
     </div>
 </div>
 

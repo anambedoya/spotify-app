@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { SpotifyService } from '../services/spotify.service';
@@ -15,8 +16,9 @@ export class DashboardComponent implements OnInit {
   getProfileSubs!: Subscription;
   image!: string;
   artistName!: string;
+  artistId!: string;
 
-  constructor(private spotifyService: SpotifyService) {
+  constructor(private spotifyService: SpotifyService, private router: Router) {
     const queryString = window.location.href;
     const params = queryString.split('&');
     const token = params[0].slice(45);
@@ -29,16 +31,21 @@ export class DashboardComponent implements OnInit {
   searchArtist(artistName: string) {
     this.spotifyService.searchArtist(artistName).subscribe((resp) => {
       const artist = resp?.artists.items[0];
-      console.log(artist);
 
       this.image = artist.images[0].url;
       this.artistName = artist.name;
-      console.log(this.artistName);
+      this.artistId = artist.id;
+
+      localStorage.setItem('artistId' ,this.artistId);
     });
   }
 
   keyEnter(e: any) {
     this.searchArtist(e.target.value);
+  }
+
+  goToArtist() {
+    this.router.navigate(['/artist']);
   }
 
 }
