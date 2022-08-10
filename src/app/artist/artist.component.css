@@ -1,4 +1,5 @@
 .albums-container {
     max-width: 20%;
     display: flex;
+    padding-left: 245px;
 }

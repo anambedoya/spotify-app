@@ -26,9 +26,7 @@ export class ArtistComponent implements OnInit {
   }
 
   onChangePage(event: any) {
-    console.log('event' ,event);
     if(event.previousPageIndex == event.pageIndex) {
-      console.log('equals');
       this.pageSize = event.pageSize;
     } else if(event.previousPageIndex > event.pageIndex) {
       this.offset-=event.pageSize;

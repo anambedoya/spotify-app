@@ -46,7 +46,16 @@ export class SpotifyService {
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
 
-    return this.http.get<Album>(`${this.apiUrl}/artists/${artistId}/albums?limit=${limit}&offset=${offset}`, { headers })
+    return this.http.get<Album>(`${this.apiUrl}/artists/${artistId}/albums?limit=${limit}&offset=${offset}`, { headers });
+  }
+
+  getArtistTopTracks(artistId: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+
+    return this.http.get<any>(`${this.apiUrl}/artists/${artistId}/top-tracks`, { headers });
   }
 
 }
